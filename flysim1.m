@@ -4,14 +4,14 @@
 % Author: M.C. Smith.
 
 T = 0.45;
-num=2;
-den=[T, -1];
+num=[6.3 4.3 0.28];
+den=[1, 11.2, 19.6, 16.2, 0.91, 0.27];
             %  Numerator and denominator of plant 
 			%  Laplace transfer function
 
-runtime=5;   	% target simulation interval in seconds
+runtime=10;   	% target simulation interval in seconds
 
-wght=[0.1, 0, 0, 0];	% entries are: impulse, step and sinusoid disturbance
+wght=[20, 2, 0, 0];	% entries are: impulse, step and sinusoid disturbance
 		% weightings and sinusoidal frequency (Hz). Impulse and step
 		% occur randomly between 0.2 and 0.6 secs. Sinusoid 
 	 	% begins at t=0.
@@ -21,12 +21,29 @@ samper=30;	% target sampling period in milliseconds
 srate=(samper+1.3)/1000;	% anticipated average sampling period in secs
                             % was samper+0.6
 
+Kc = 17.5;
+Tc = 1.77;
+
+Kp = 0.6*Kc;
+Ti = 0.5*Tc;
+Td = 0.125*Tc;
+                            
 grphc1
+
+integ = 0;
+deriv = 0;
+yprev = 0;
 
 for i=1:count
 	set(hh,'Xdata',hx,'Ydata',hy+y*hz);
-	pp=p(1,2);
-	pp=sign(pp)*min(max(0,abs(pp)-0.05),10);
+    
+    unclippedinteg = integ + y * srate;
+    integ = sign(unclippedinteg) * min(abs(unclippedinteg), 0.169);
+    deriv = (y-yprev) / srate;
+    pp = -Kp * (y + integ / Ti + deriv * Td);
+    yprev = y;
+    
+	pp=sign(pp)*min(max(0,abs(pp)-0.0),10);
 	set(jh,'Xdata',jx,'Ydata',jy+pp*jz);
 	drawnow;
 
