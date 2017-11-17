@@ -2,14 +2,16 @@
 % Command file flysim.m for 3F1 Flight Control Experiment.
 % Copyright: Cambridge University Engineering Department, October 1994.
 % Author: M.C. Smith.
-%
 
-num=10; den=[1 10 0];	%  Numerator and denominator of plant 
+T = 4*Dtime/pi;
+num=sqrt(8)/Kgain; 
+den=[T^3, 3*T^2, 3*T, 1];	
+            %  Numerator and denominator of plant 
 			%  Laplace transfer function
 
 runtime=10;   	% target simulation interval in seconds
 
-wght=[0,5,0,0];	% entries are: impulse, step and sinusoid disturbance
+wght=[5 * Kgain * Dtime, 0, 0, 0];	% entries are: impulse, step and sinusoid disturbance
 		% weightings and sinusoidal frequency (Hz). Impulse and step
 		% occur randomly between 0.2 and 0.6 secs. Sinusoid 
 	 	% begins at t=0.
