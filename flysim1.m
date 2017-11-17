@@ -11,7 +11,7 @@ den=[1, 11.2, 19.6, 16.2, 0.91, 0.27];
 
 runtime=10;   	% target simulation interval in seconds
 
-wght=[20, 2, 0, 0];	% entries are: impulse, step and sinusoid disturbance
+wght=[2, 2, 0, 0];	% entries are: impulse, step and sinusoid disturbance
 		% weightings and sinusoidal frequency (Hz). Impulse and step
 		% occur randomly between 0.2 and 0.6 secs. Sinusoid 
 	 	% begins at t=0.
@@ -26,7 +26,7 @@ Tc = 1.77;
 
 Kp = 0.6*Kc;
 Ti = 0.5*Tc;
-Td = 0.125*Tc;
+Td = 1.4*0.125*Tc;
                             
 grphc1
 
