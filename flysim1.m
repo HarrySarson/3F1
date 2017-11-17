@@ -7,9 +7,9 @@
 num=10; den=[1 10 0];	%  Numerator and denominator of plant 
 			%  Laplace transfer function
 
-runtime=5;   	% target simulation interval in seconds
+runtime=10;   	% target simulation interval in seconds
 
-wght=[5,0,0,0];	% entries are: impulse, step and sinusoid disturbance
+wght=[0,5,0,0];	% entries are: impulse, step and sinusoid disturbance
 		% weightings and sinusoidal frequency (Hz). Impulse and step
 		% occur randomly between 0.2 and 0.6 secs. Sinusoid 
 	 	% begins at t=0.
