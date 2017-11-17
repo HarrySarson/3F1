@@ -3,15 +3,15 @@
 % Copyright: Cambridge University Engineering Department, October 1994.
 % Author: M.C. Smith.
 
-T = 4*Dtime/pi;
-num=sqrt(8)/Kgain; 
-den=[T^3, 3*T^2, 3*T, 1];	
+T = 0.45;
+num=2;
+den=[T, -1];
             %  Numerator and denominator of plant 
 			%  Laplace transfer function
 
-runtime=10;   	% target simulation interval in seconds
+runtime=5;   	% target simulation interval in seconds
 
-wght=[5 * Kgain * Dtime, 0, 0, 0];	% entries are: impulse, step and sinusoid disturbance
+wght=[0.1, 0, 0, 0];	% entries are: impulse, step and sinusoid disturbance
 		% weightings and sinusoidal frequency (Hz). Impulse and step
 		% occur randomly between 0.2 and 0.6 secs. Sinusoid 
 	 	% begins at t=0.
